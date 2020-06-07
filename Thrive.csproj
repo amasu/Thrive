@@ -58,6 +58,7 @@
     <Compile Include="simulation_parameters\CompoundLoader.cs" />
     <Compile Include="src\engine\FeatureInformation.cs" />
     <Compile Include="src\engine\GodotFileStream.cs" />
+    <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\SceneManager.cs" />
     <Compile Include="src\engine\ScreenShotTaker.cs" />
     <Compile Include="src\general\PathUtils.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="src\microbe_stage\MicrobeAICommonData.cs" />
     <Compile Include="src\saving\FileHelpers.cs" />
     <Compile Include="src\saving\ILoadableGameState.cs" />
+    <Compile Include="src\saving\InProgressSave.cs" />
     <Compile Include="src\saving\ISaveApplyable.cs" />
     <Compile Include="src\saving\ISaveContext.cs" />
     <Compile Include="src\saving\ISaveLoadable.cs" />
@@ -193,6 +195,7 @@
     <Compile Include="src\saving\SaveContext.cs" />
     <Compile Include="src\saving\SaveHelper.cs" />
     <Compile Include="src\saving\SaveManager.cs" />
+    <Compile Include="src\saving\SaveStatusOverlay.cs" />
     <Compile Include="src\saving\serializers\Base64BinaryConverter.cs" />
     <Compile Include="src\saving\serializers\BaseNodeConverter.cs" />
     <Compile Include="src\saving\serializers\CompoundBagConverter.cs" />
