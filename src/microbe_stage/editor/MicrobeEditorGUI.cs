@@ -59,6 +59,15 @@ public class MicrobeEditorGUI : Node
     public NodePath ATPConsumptionBarPath;
 
     [Export]
+    public NodePath BaseMovementBarPath;
+
+    [Export]
+    public NodePath ATPMovementBarPath;
+
+    [Export]
+    public NodePath OsmoregulationBarPath;
+
+    [Export]
     public NodePath ATPProductionLabelPath;
 
     [Export]
@@ -238,6 +247,9 @@ public class MicrobeEditorGUI : Node
     private Label atpBalanceLabel;
     private ProgressBar atpProductionBar;
     private ProgressBar atpConsumptionBar;
+    private ProgressBar baseMovementBar;
+    private ProgressBar atpMovementBar;
+    private ProgressBar osmoregulationBar;
     private Label atpProductionLabel;
     private Label atpConsumptionLabel;
     private Label glucoseReductionLabel;
@@ -321,6 +333,9 @@ public class MicrobeEditorGUI : Node
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
         atpProductionBar = GetNode<ProgressBar>(ATPProductionBarPath);
         atpConsumptionBar = GetNode<ProgressBar>(ATPConsumptionBarPath);
+        baseMovementBar = GetNode<ProgressBar>(BaseMovementBarPath);
+        atpMovementBar = GetNode<ProgressBar>(ATPMovementBarPath);
+        osmoregulationBar = GetNode<ProgressBar>(OsmoregulationBarPath);
         atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
         atpConsumptionLabel = GetNode<Label>(ATPConsumptionLabelPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
@@ -457,6 +472,17 @@ public class MicrobeEditorGUI : Node
 
         atpConsumptionBar.MaxValue = maxValue;
         atpConsumptionBar.Value = energyBalance.TotalConsumption;
+
+        baseMovementBar.MaxValue = maxValue;
+        baseMovementBar.Value = energyBalance.BaseMovement;
+
+        atpMovementBar.MaxValue = maxValue;
+        atpMovementBar.Value = energyBalance.Flagella + baseMovementBar.Value;
+
+        osmoregulationBar.MaxValue = maxValue;
+        osmoregulationBar.Value = energyBalance.Osmoregulation + atpMovementBar.Value;
+
+
 
         var atpProductionBarProgressLength = (float)(atpProductionBar.RectSize.x * atpProductionBar.Value /
             atpProductionBar.MaxValue);
