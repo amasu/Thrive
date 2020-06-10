@@ -83,7 +83,6 @@ public class ProcessSystem
                         processATPConsumption += amount;
 
                         result.AddConsumption(organelle.Name, amount);
-                        result.ConsumptionProcesses.Add(processData.Process,amount);
                     }
 
                     if (processData.Outputs.ContainsKey(ATP))
@@ -114,6 +113,8 @@ public class ProcessSystem
 
         // Add movement consumption together
         result.BaseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
+        result.AddConsumption("baseMovement",result.BaseMovement);
+        result.AddConsumption("flagella",result.Flagella);
         var totalMovementConsumption = movementATPConsumption + result.BaseMovement;
 
         // Add osmoregulation

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 public class EnergyBalanceInfo
 {
     public Dictionary<string, float> Consumption { get; } = new Dictionary<string, float>();
-    public Dictionary<BioProcess, float> ConsumptionProcesses = new Dictionary<BioProcess, float>();
     public Dictionary<string, float> Production { get; } = new Dictionary<string, float>();
 
     public float BaseMovement { get; set; } = 0.0f;

@@ -59,15 +59,6 @@ public class MicrobeEditorGUI : Node
     public NodePath ATPConsumptionBarPath;
 
     [Export]
-    public NodePath BaseMovementBarPath;
-
-    [Export]
-    public NodePath ATPMovementBarPath;
-
-    [Export]
-    public NodePath OsmoregulationBarPath;
-
-    [Export]
     public NodePath ATPProductionLabelPath;
 
     [Export]
@@ -247,9 +238,6 @@ public class MicrobeEditorGUI : Node
     private Label atpBalanceLabel;
     private ProgressBar atpProductionBar;
     private ProgressBar atpConsumptionBar;
-    private ProgressBar baseMovementBar;
-    private ProgressBar atpMovementBar;
-    private ProgressBar osmoregulationBar;
     private Label atpProductionLabel;
     private Label atpConsumptionLabel;
     private Label glucoseReductionLabel;
@@ -333,9 +321,6 @@ public class MicrobeEditorGUI : Node
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
         atpProductionBar = GetNode<ProgressBar>(ATPProductionBarPath);
         atpConsumptionBar = GetNode<ProgressBar>(ATPConsumptionBarPath);
-        baseMovementBar = GetNode<ProgressBar>(BaseMovementBarPath);
-        atpMovementBar = GetNode<ProgressBar>(ATPMovementBarPath);
-        osmoregulationBar = GetNode<ProgressBar>(OsmoregulationBarPath);
         atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
         atpConsumptionLabel = GetNode<Label>(ATPConsumptionLabelPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
@@ -473,16 +458,38 @@ public class MicrobeEditorGUI : Node
         atpConsumptionBar.MaxValue = maxValue;
         atpConsumptionBar.Value = energyBalance.TotalConsumption;
 
-        baseMovementBar.MaxValue = maxValue;
-        baseMovementBar.Value = energyBalance.BaseMovement;
-
-        atpMovementBar.MaxValue = maxValue;
-        atpMovementBar.Value = energyBalance.Flagella + baseMovementBar.Value;
-
-        osmoregulationBar.MaxValue = maxValue;
-        osmoregulationBar.Value = energyBalance.Osmoregulation + atpMovementBar.Value;
-
-
+        foreach (var process in energyBalance.Consumption)
+        {
+            GD.Print(process.Key);
+            if (atpConsumptionBar.HasNode(process.Key))
+            {
+                ProgressBar progressBar = atpConsumptionBar.GetNode<ProgressBar>(process.Key);
+                progressBar.MaxValue = maxValue;
+                double barShift = atpConsumptionBar.GetChild(progressBar.GetIndex() + 1) is ProgressBar ? atpConsumptionBar.GetChild<ProgressBar>(progressBar.GetIndex() + 1).Value : 0;
+                progressBar.Value = process.Value + barShift;
+                GD.Print("Updated!");
+            }
+            else
+            {
+                ProgressBar progressBar = new ProgressBar();
+                progressBar.Name = process.Key;
+                progressBar.PercentVisible = false;
+                progressBar.MarginRight = 318;
+                progressBar.MarginBottom = 15;
+                StyleBoxFlat styleBoxFlat = new StyleBoxFlat();
+                styleBoxFlat.BgColor = BarHelper.GetBarColour(process.Key);
+                StyleBoxEmpty styleBoxEmpty = new StyleBoxEmpty();
+                progressBar.Set("custom_styles/fg", styleBoxFlat);
+                progressBar.Set("custom_styles/bg", styleBoxEmpty);
+                progressBar.MaxValue = maxValue;
+                atpConsumptionBar.AddChild(progressBar);
+                atpConsumptionBar.MoveChild(progressBar, 0);
+                double barShift = atpConsumptionBar.GetChild(progressBar.GetIndex() + 1) is ProgressBar ? atpConsumptionBar.GetChild<ProgressBar>(progressBar.GetIndex() + 1).Value : 0;
+                progressBar.Value = process.Value + barShift;
+                GD.Print("Added!");
+            }
+        }
+        GD.Print("-----------------------------");
 
         var atpProductionBarProgressLength = (float)(atpProductionBar.RectSize.x * atpProductionBar.Value /
             atpProductionBar.MaxValue);

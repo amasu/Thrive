@@ -84,6 +84,7 @@
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
     <Compile Include="src\microbe_stage\ChunkConfiguration.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudPlane.cs" />
+    <Compile Include="src\microbe_stage\editor\BarHelper.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditor.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorGUI.cs" />
     <Compile Include="src\microbe_stage\editor\PatchMapDrawer.cs" />
