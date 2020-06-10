@@ -59,12 +59,6 @@ public class MicrobeEditorGUI : Node
     public NodePath ATPConsumptionBarPath;
 
     [Export]
-    public NodePath ATPProductionLabelPath;
-
-    [Export]
-    public NodePath ATPConsumptionLabelPath;
-
-    [Export]
     public NodePath GlucoseReductionLabelPath;
 
     [Export]
@@ -238,8 +232,6 @@ public class MicrobeEditorGUI : Node
     private Label atpBalanceLabel;
     private ProgressBar atpProductionBar;
     private ProgressBar atpConsumptionBar;
-    private Label atpProductionLabel;
-    private Label atpConsumptionLabel;
     private Label glucoseReductionLabel;
     private Label autoEvoLabel;
     private Label externalEffectsLabel;
@@ -321,8 +313,6 @@ public class MicrobeEditorGUI : Node
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
         atpProductionBar = GetNode<ProgressBar>(ATPProductionBarPath);
         atpConsumptionBar = GetNode<ProgressBar>(ATPConsumptionBarPath);
-        atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
-        atpConsumptionLabel = GetNode<Label>(ATPConsumptionLabelPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
         autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
         externalEffectsLabel = GetNode<Label>(ExternalEffectsLabelPath);
@@ -458,49 +448,18 @@ public class MicrobeEditorGUI : Node
         atpConsumptionBar.MaxValue = maxValue;
         atpConsumptionBar.Value = energyBalance.TotalConsumption;
 
-        foreach (var process in energyBalance.Consumption)
+        foreach (var process in energyBalance.SortedConsumption)
         {
-            GD.Print(process.Key);
-            if (atpConsumptionBar.HasNode(process.Key))
-            {
-                ProgressBar progressBar = atpConsumptionBar.GetNode<ProgressBar>(process.Key);
-                progressBar.MaxValue = maxValue;
-                double barShift = atpConsumptionBar.GetChild(progressBar.GetIndex() + 1) is ProgressBar ? atpConsumptionBar.GetChild<ProgressBar>(progressBar.GetIndex() + 1).Value : 0;
-                progressBar.Value = process.Value + barShift;
-                GD.Print("Updated!");
-            }
-            else
-            {
-                ProgressBar progressBar = new ProgressBar();
-                progressBar.Name = process.Key;
-                progressBar.PercentVisible = false;
-                progressBar.MarginRight = 318;
-                progressBar.MarginBottom = 15;
-                StyleBoxFlat styleBoxFlat = new StyleBoxFlat();
-                styleBoxFlat.BgColor = BarHelper.GetBarColour(process.Key);
-                StyleBoxEmpty styleBoxEmpty = new StyleBoxEmpty();
-                progressBar.Set("custom_styles/fg", styleBoxFlat);
-                progressBar.Set("custom_styles/bg", styleBoxEmpty);
-                progressBar.MaxValue = maxValue;
-                atpConsumptionBar.AddChild(progressBar);
-                atpConsumptionBar.MoveChild(progressBar, 0);
-                double barShift = atpConsumptionBar.GetChild(progressBar.GetIndex() + 1) is ProgressBar ? atpConsumptionBar.GetChild<ProgressBar>(progressBar.GetIndex() + 1).Value : 0;
-                progressBar.Value = process.Value + barShift;
-                GD.Print("Added!");
-            }
+            createAndUpdateProcessBar(process, maxValue, atpConsumptionBar);
         }
-        GD.Print("-----------------------------");
 
-        var atpProductionBarProgressLength = (float)(atpProductionBar.RectSize.x * atpProductionBar.Value /
-            atpProductionBar.MaxValue);
-        var atpConsumptionBarProgressLength = (float)(atpConsumptionBar.RectSize.x * atpConsumptionBar.Value /
-            atpConsumptionBar.MaxValue);
+        foreach (var process in energyBalance.Production)
+        {
+            createAndUpdateProcessBar(process, maxValue, atpProductionBar);
+        }
 
-        atpProductionLabel.RectSize = new Vector2(atpProductionBarProgressLength, 18);
-        atpConsumptionLabel.RectSize = new Vector2(atpConsumptionBarProgressLength, 18);
-
-        atpProductionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalProduction);
-        atpConsumptionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalConsumption);
+        removeUnusedBars(atpConsumptionBar, energyBalance.Consumption);
+        removeUnusedBars(atpProductionBar, energyBalance.Production);
     }
 
     /// <summary>
@@ -1452,6 +1411,51 @@ public class MicrobeEditorGUI : Node
         else
         {
             speciesNameEdit.Set("custom_colors/font_color", new Color(1, 1, 1));
+        }
+    }
+    private void createAndUpdateProcessBar (KeyValuePair <string, float> process, float maxValue, ProgressBar parent)
+    {
+        if (parent.HasNode(process.Key))
+        {
+            ProgressBar progressBar = parent.GetNode<ProgressBar>(process.Key);
+            progressBar.MaxValue = maxValue;
+            double barShift = parent.GetChildCount() > progressBar.GetIndex() + 1 ?
+                parent.GetChild<ProgressBar>(progressBar.GetIndex() + 1).Value : 0;
+            progressBar.Value = process.Value + barShift;
+        }
+        else
+        {
+            ProgressBar progressBar = new ProgressBar();
+            progressBar.Name = process.Key;
+            progressBar.PercentVisible = false;
+            progressBar.MarginRight = 318;
+            progressBar.MarginBottom = 15;
+            StyleBoxFlat styleBoxFlat = new StyleBoxFlat();
+            styleBoxFlat.BgColor = BarHelper.GetBarColour(process.Key);
+            StyleBoxEmpty styleBoxEmpty = new StyleBoxEmpty();
+            progressBar.Set("custom_styles/fg", styleBoxFlat);
+            progressBar.Set("custom_styles/bg", styleBoxEmpty);
+            progressBar.MaxValue = maxValue;
+            parent.AddChild(progressBar);
+            parent.MoveChild(progressBar, 0);
+            double barShift = parent.GetChildCount() > progressBar.GetIndex() + 1 ?
+                parent.GetChild<ProgressBar>(progressBar.GetIndex() + 1).Value : 0;
+            progressBar.Value = process.Value + barShift;
+        }
+    }
+
+    private void removeUnusedBars (ProgressBar parent, Dictionary<string, float> processes)
+    {
+        foreach (ProgressBar progressBar in parent.GetChildren())
+        {
+            bool match = false;
+            foreach (var process in processes)
+            {
+                if (progressBar.Name == process.Key)
+                    match = true;
+            }
+            if (!match)
+                progressBar.QueueFree();
         }
     }
 }
