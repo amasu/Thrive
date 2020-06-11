@@ -8,8 +8,6 @@ public class EnergyBalanceInfo
     public Dictionary<string, float> Consumption { get; } = new Dictionary<string, float>();
     public Dictionary<string, float> Production { get; } = new Dictionary<string, float>();
 
-    public Dictionary<string, float> SortedConsumption { get; } = new Dictionary<string, float>();
-
     public float BaseMovement { get; set; } = 0.0f;
     public float Flagella { get; set; } = 0.0f;
 
@@ -44,24 +42,6 @@ public class EnergyBalanceInfo
         else
         {
             Production[groupName] += amount;
-        }
-    }
-
-    public void sortConsumption()
-    {
-        foreach(var process in Consumption)
-        {
-            if (process.Key == "baseMovement" || process.Key == "flagella" || process.Key == "osmoregulation")
-            {
-                SortedConsumption[process.Key] = process.Value;
-            }
-        }
-        foreach(var process in Consumption)
-        {
-            if (process.Key != "baseMovement" || process.Key != "flagella" || process.Key != "osmoregulation")
-            {
-                SortedConsumption[process.Key] = process.Value;
-            }
         }
     }
 }

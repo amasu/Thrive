@@ -23,6 +23,7 @@
         "name": "pilus"
     },
     "rusticyanin": {
+        "colour": "#ad4a22",
         "mpCost": 45,
         "initialComposition": {
             "ammonia": 1,
@@ -52,6 +53,7 @@
         "name": "rusticyanin"
     },
     "nitrogenase": {
+        "colour": "#ce681a",
         "mpCost": 55,
         "initialComposition": {
             "ammonia": 1,
@@ -82,6 +84,7 @@
         "name": "nitrogenase"
     },
     "protoplasm": {
+        "colour": "#1db7e5",
         "mpCost": 55,
         "initialComposition": {
             "ammonia": 1,
@@ -111,6 +114,7 @@
         "name": "protoplasm"
     },
     "chemoSynthesizingProteins": {
+        "colour": "#c5df5c",
         "mpCost": 45,
         "initialComposition": {
             "ammonia": 1,
@@ -141,6 +145,7 @@
         "name": "chemoSynthesizingProteins"
     },
     "oxytoxyProteins": {
+        "colour": "#a43673",
         "mpCost": 55,
         "initialComposition": {
             "ammonia": 1,
@@ -175,6 +180,7 @@
         "name": "oxytoxyProteins"
     },
     "chromatophore": {
+        "colour": "#37da9b",
         "mpCost": 50,
         "initialComposition": {
             "ammonia": 1,
@@ -205,6 +211,7 @@
         "name": "chromatophore"
     },
     "metabolosome": {
+        "colour": "#ff7f75",
         "mpCost": 45,
         "initialComposition": {
             "ammonia": 1,
@@ -234,6 +241,7 @@
         "name": "metabolosome"
     },
     "nitrogenfixingplastid": {
+        "colour": "#ffb74f",
         "mpCost": 50,
         "initialComposition": {
             "ammonia": 2,
@@ -300,6 +308,7 @@
         "name": "chemoplast"
     },
     "flagellum": {
+        "colour": "#32a8b5",
         "mpCost": 55,
         "initialComposition": {
             "ammonia": 2,
@@ -354,6 +363,7 @@
         "name": "vacuole"
     },
     "mitochondrion": {
+        "colour": "#9b6ff1",
         "mpCost": 45,
         "initialComposition": {
             "ammonia": 2,
@@ -387,6 +397,7 @@
         "name": "mitochondrion"
     },
     "oxytoxy": {
+        "colour": "#bc3f7e",
         "mpCost": 70,
         "initialComposition": {
             "ammonia": 2,
@@ -454,6 +465,7 @@
         "name": "chloroplast"
     },
     "cytoplasm": {
+        "colour": "#9fc6e4",
         "mpCost": 22,
         "initialComposition": {
             "ammonia": 2,

@@ -123,8 +123,6 @@ public class ProcessSystem
 
         result.AddConsumption("osmoregulation", result.Osmoregulation);
 
-        result.sortConsumption();
-
         // Compute totals
         result.TotalProduction = processATPProduction;
         result.TotalConsumptionStationary = processATPConsumption + result.Osmoregulation;

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -448,7 +449,7 @@ public class MicrobeEditorGUI : Node
         atpConsumptionBar.MaxValue = maxValue;
         atpConsumptionBar.Value = energyBalance.TotalConsumption;
 
-        foreach (var process in energyBalance.SortedConsumption)
+        foreach (var process in makeSortedConsumptionBar(energyBalance.Consumption))
         {
             createAndUpdateProcessBar(process, maxValue, atpConsumptionBar);
         }
@@ -1429,6 +1430,7 @@ public class MicrobeEditorGUI : Node
             progressBar.Name = process.Key;
             progressBar.PercentVisible = false;
             progressBar.MarginRight = 318;
+            progressBar.MarginTop = 3;
             progressBar.MarginBottom = 15;
             StyleBoxFlat styleBoxFlat = new StyleBoxFlat();
             styleBoxFlat.BgColor = BarHelper.GetBarColour(process.Key);
@@ -1457,5 +1459,18 @@ public class MicrobeEditorGUI : Node
             if (!match)
                 progressBar.QueueFree();
         }
+    }
+
+    private List<KeyValuePair<string, float>> makeSortedConsumptionBar (Dictionary<string, float> consumptionBar)
+    {
+        List<KeyValuePair<string, float>> result = new List<KeyValuePair<string, float>>();
+        foreach (var pair in consumptionBar)
+        {
+            result.Add(pair);
+        }
+        result = result.OrderBy(
+            i => i.Key != "baseMovement" && i.Key != "flagella" && i.Key != "osmoregulation")
+            .ToList();
+        return result;
     }
 }

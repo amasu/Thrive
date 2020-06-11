@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -6,42 +5,33 @@ using Godot;
 /// </summary>
 public static class BarHelper
 {
-	private static Dictionary<string, Color> barColors = new Dictionary<string, Color>(){
-		{"baseMovement", new Color("#ffbb00")},
-		{"flagella", new Color("#ffff00")},
-		{"osmoregulation", new Color("#ff00bb")},
-		{"oxytoxyProteins", new Color("#ffbbbb")},
-		{"nitrogenase", new Color("#ffff00")},
-	};
-
-	private static Dictionary<string, string> barIcons = new Dictionary<string, string>(){
-
-	};
-
 	public static Color GetBarColour(string name)
 	{
-		if (!barColors.ContainsKey(name))
-        {
-			GD.PrintErr("Bar Colour not found");
-			return new Color("#555555");
-        }
-        else
-        {
-			return barColors[name];
-        }
+		foreach(var organelle in SimulationParameters.Instance.GetAllOrganelles())
+		{
+			if (organelle.Name == name)
+				return new Color(organelle.Colour);
+		}
+		switch (name)
+		{
+			case "baseMovement":
+				return new Color("#ff5524");
+			case "flagella":
+				return new Color("#ff9721");
+			case "osmoregulation":
+				return new Color("#ffd63e");
+			default:
+				return new Color ("#444444");
+		}
 	}
 
 	public static string GetBarIcons(string name)
 	{
-		if (!barColors.ContainsKey(name))
-        {
-			GD.PrintErr("Bar Colour not found");
-			return "";
-        }
-        else
-        {
-			return barIcons[name];
-        }
+		switch (name)
+		{
+			default:
+				return "";
+		}
 	}
 }
 
