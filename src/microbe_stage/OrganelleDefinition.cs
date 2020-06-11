@@ -45,11 +45,6 @@ public class OrganelleDefinition : IRegistryType
     public string Name;
 
     /// <summary>
-    ///   Colour used for ATP bars
-    /// </summary>
-    public string Colour;
-
-    /// <summary>
     ///   A path to a scene to display this organelle with.
     ///   If empty won't have a display model.
     /// </summary>
@@ -101,6 +96,20 @@ public class OrganelleDefinition : IRegistryType
     public Dictionary<Compound, float> InitialComposition;
 
     /// <summary>
+    ///   Colour used for ATP production bar
+    /// </summary>
+    public string ProductionColour;
+
+    /// <summary>
+    ///   Colour used for ATP consumption bar
+    /// </summary>
+    public string ConsumptionColour;
+
+    /// <summary>
+    ///   Icon used for the ATP bars
+    /// </summary>
+    public string IconPath;
+
     ///   Cost of placing this organelle in the editor
     /// </summary>
     public int MPCost;

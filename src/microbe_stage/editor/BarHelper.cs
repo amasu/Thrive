@@ -5,12 +5,25 @@ using Godot;
 /// </summary>
 public static class BarHelper
 {
-	public static Color GetBarColour(string name)
+	public static Color GetBarColour(string name, char type)
 	{
 		foreach(var organelle in SimulationParameters.Instance.GetAllOrganelles())
 		{
 			if (organelle.Name == name)
-				return new Color(organelle.Colour);
+			{
+				if (type == 'p')
+				{
+					return new Color(organelle.ProductionColour);
+				}
+				else if (type == 'c')
+				{
+					return new Color(organelle.ConsumptionColour);
+				}
+				else
+				{
+					return new Color ("#444444");
+				}
+			}
 		}
 		switch (name)
 		{

@@ -1433,7 +1433,16 @@ public class MicrobeEditorGUI : Node
             progressBar.MarginTop = 3;
             progressBar.MarginBottom = 15;
             StyleBoxFlat styleBoxFlat = new StyleBoxFlat();
-            styleBoxFlat.BgColor = BarHelper.GetBarColour(process.Key);
+            char type = 'x';
+            if (parent.Name == "AtpProductionBar")
+            {
+                type = 'p';
+            }
+            else if (parent.Name == "AtpConsumptionBar")
+            {
+                type = 'c';
+            }
+            styleBoxFlat.BgColor = BarHelper.GetBarColour(process.Key, type);
             StyleBoxEmpty styleBoxEmpty = new StyleBoxEmpty();
             progressBar.Set("custom_styles/fg", styleBoxFlat);
             progressBar.Set("custom_styles/bg", styleBoxEmpty);

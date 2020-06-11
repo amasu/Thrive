@@ -23,7 +23,9 @@
         "name": "pilus"
     },
     "rusticyanin": {
-        "colour": "#ad4a22",
+        "productionColour": "#ad4a22",
+        "consumptionColour": "#ad4a22",
+        "iconPath": "",
         "mpCost": 45,
         "initialComposition": {
             "ammonia": 1,
@@ -53,7 +55,9 @@
         "name": "rusticyanin"
     },
     "nitrogenase": {
-        "colour": "#ce681a",
+        "productionColour": "#ce681a",
+        "consumptionColour": "#ce681a",
+        "iconPath": "",
         "mpCost": 55,
         "initialComposition": {
             "ammonia": 1,
@@ -84,7 +88,9 @@
         "name": "nitrogenase"
     },
     "protoplasm": {
-        "colour": "#1db7e5",
+        "productionColour": "#1db7e5",
+        "consumptionColour": "#1db7e5",
+        "iconPath": "",
         "mpCost": 55,
         "initialComposition": {
             "ammonia": 1,
@@ -114,7 +120,9 @@
         "name": "protoplasm"
     },
     "chemoSynthesizingProteins": {
-        "colour": "#c5df5c",
+        "productionColour": "#c5df5c",
+        "consumptionColour": "#c5df5c",
+        "iconPath": "",
         "mpCost": 45,
         "initialComposition": {
             "ammonia": 1,
@@ -145,7 +153,9 @@
         "name": "chemoSynthesizingProteins"
     },
     "oxytoxyProteins": {
-        "colour": "#a43673",
+        "productionColour": "#a43673",
+        "consumptionColour": "#a43673",
+        "iconPath": "",
         "mpCost": 55,
         "initialComposition": {
             "ammonia": 1,
@@ -180,7 +190,9 @@
         "name": "oxytoxyProteins"
     },
     "chromatophore": {
-        "colour": "#37da9b",
+        "productionColour": "#37da9b",
+        "consumptionColour": "#37da9b",
+        "iconPath": "",
         "mpCost": 50,
         "initialComposition": {
             "ammonia": 1,
@@ -211,7 +223,9 @@
         "name": "chromatophore"
     },
     "metabolosome": {
-        "colour": "#ff7f75",
+        "productionColour": "#ff7f75",
+        "consumptionColour": "#ff7f75",
+        "iconPath": "",
         "mpCost": 45,
         "initialComposition": {
             "ammonia": 1,
@@ -241,7 +255,9 @@
         "name": "metabolosome"
     },
     "nitrogenfixingplastid": {
-        "colour": "#ffb74f",
+        "productionColour": "#ffb74f",
+        "consumptionColour": "#ffb74f",
+        "iconPath": "",
         "mpCost": 50,
         "initialComposition": {
             "ammonia": 2,
@@ -308,7 +324,9 @@
         "name": "chemoplast"
     },
     "flagellum": {
-        "colour": "#32a8b5",
+        "productionColour": "#32a8b5",
+        "consumptionColour": "#32a8b5",
+        "iconPath": "",
         "mpCost": 55,
         "initialComposition": {
             "ammonia": 2,
@@ -363,7 +381,9 @@
         "name": "vacuole"
     },
     "mitochondrion": {
-        "colour": "#9b6ff1",
+        "productionColour": "#9b6ff1",
+        "consumptionColour": "#9b6ff1",
+        "iconPath": "",
         "mpCost": 45,
         "initialComposition": {
             "ammonia": 2,
@@ -397,7 +417,9 @@
         "name": "mitochondrion"
     },
     "oxytoxy": {
-        "colour": "#bc3f7e",
+        "productionColour": "#bc3f7e",
+        "consumptionColour": "#bc3f7e",
+        "iconPath": "",
         "mpCost": 70,
         "initialComposition": {
             "ammonia": 2,
@@ -465,7 +487,9 @@
         "name": "chloroplast"
     },
     "cytoplasm": {
-        "colour": "#9fc6e4",
+        "productionColour": "#9fc6e4",
+        "consumptionColour": "#9fc6e4",
+        "iconPath": "",
         "mpCost": 22,
         "initialComposition": {
             "ammonia": 2,
