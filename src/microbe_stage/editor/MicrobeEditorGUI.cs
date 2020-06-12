@@ -1487,7 +1487,7 @@ public class MicrobeEditorGUI : Node
                     match = true;
             }
             if (!match)
-                progressBar.GetParent().RemoveChild(progressBar);
+                progressBar.Free();
         }
     }
 
