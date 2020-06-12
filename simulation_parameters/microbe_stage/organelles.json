@@ -324,8 +324,8 @@
         "name": "chemoplast"
     },
     "flagellum": {
-        "productionColour": "#32a8b5",
-        "consumptionColour": "#32a8b5",
+        "productionColour": "#ff9721",
+        "consumptionColour": "#ff9721",
         "iconPath": "res://assets/textures/gui/bevel/FlagellumIcon.png",
         "mpCost": 55,
         "initialComposition": {

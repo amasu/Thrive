@@ -1296,7 +1296,7 @@ __meta__ = {
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -330.0
-margin_bottom = 66.0
+margin_bottom = 100.0
 custom_styles/panel = SubResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1306,7 +1306,7 @@ __meta__ = {
 margin_left = 3.0
 margin_top = 3.0
 margin_right = 327.0
-margin_bottom = 63.0
+margin_bottom = 97.0
 mouse_filter = 1
 custom_constants/margin_right = 3
 custom_constants/margin_top = 3
@@ -1317,7 +1317,7 @@ custom_constants/margin_bottom = 3
 margin_left = 3.0
 margin_top = 3.0
 margin_right = 321.0
-margin_bottom = 57.0
+margin_bottom = 91.0
 custom_constants/separation = 0
 
 [node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
@@ -1337,7 +1337,7 @@ custom_styles/separator = SubResource( 11 )
 [node name="AtpProductionBar" type="ProgressBar" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
 margin_top = 22.0
 margin_right = 318.0
-margin_bottom = 37.0
+margin_bottom = 52.0
 rect_min_size = Vector2( 0, 15 )
 mouse_filter = 1
 custom_styles/fg = SubResource( 12 )
@@ -1346,9 +1346,9 @@ custom_fonts/font = SubResource( 14 )
 percent_visible = false
 
 [node name="AtpConsumptionBar" type="ProgressBar" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
-margin_top = 37.0
+margin_top = 52.0
 margin_right = 318.0
-margin_bottom = 52.0
+margin_bottom = 82.0
 rect_min_size = Vector2( 0, 15 )
 mouse_filter = 1
 custom_styles/fg = SubResource( 15 )

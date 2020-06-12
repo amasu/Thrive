@@ -48,11 +48,9 @@ public static class BarHelper
         switch (name)
         {
             case "baseMovement":
-                return GD.Load<Texture>("res://assets/textures/gui/logo.png");
-            case "flagella":
-                return GD.Load<Texture>("res://assets/textures/gui/bevel/FlagellumIcon.png");
+                return GD.Load<Texture>("res://assets/textures/gui/bevel/baseMovementIcon.png");
             case "osmoregulation":
-                return GD.Load<Texture>("res://assets/textures/gui/logo.png");
+                return GD.Load<Texture>("res://assets/textures/gui/bevel/osmoIcon.png");
             default:
                 return GD.Load<Texture>("res://assets/textures/gui/logo.png");
         }

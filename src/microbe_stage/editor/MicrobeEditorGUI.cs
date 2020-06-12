@@ -1423,11 +1423,11 @@ public class MicrobeEditorGUI : Node
             progressBar.MaxValue = maxValue;
             textureRect.MarginLeft = getPreviousBar(parent, progressBar).RectSize.x
                 * (float)(getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue);
-            textureRect.MarginRight = 15 + getPreviousBar(parent, progressBar).RectSize.x
+            textureRect.MarginRight = 30 + getPreviousBar(parent, progressBar).RectSize.x
                 * (float)(getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue);
             progressBar.Value = process.Value + getPreviousBar(parent, progressBar).Value;
             textureRect.Visible = ((progressBar.RectSize.x * progressBar.Value / progressBar.MaxValue)
-                - (getPreviousBar(parent, progressBar).RectSize.x * getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue)) >= 15;
+                - (getPreviousBar(parent, progressBar).RectSize.x * getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue)) >= 30;
         }
         else
         {
@@ -1435,16 +1435,18 @@ public class MicrobeEditorGUI : Node
             progressBar.Name = process.Key;
             progressBar.PercentVisible = false;
             progressBar.MarginRight = 318;
-            progressBar.MarginBottom = 15;
             StyleBoxFlat styleBoxFlat = new StyleBoxFlat();
             char type = 'x';
             if (parent.Name == "AtpProductionBar")
             {
                 type = 'p';
+                progressBar.MarginBottom = 30;
             }
             else if (parent.Name == "AtpConsumptionBar")
             {
                 type = 'c';
+                progressBar.MarginTop = 15;
+                progressBar.MarginBottom = 45;
             }
             styleBoxFlat.BgColor = BarHelper.GetBarColour(process.Key, type);
             StyleBoxEmpty styleBoxEmpty = new StyleBoxEmpty();
@@ -1454,17 +1456,17 @@ public class MicrobeEditorGUI : Node
             TextureRect textureRect = new TextureRect();
             textureRect.Texture = BarHelper.GetBarIcon(process.Key);
             textureRect.Expand = true;
-            textureRect.RectSize = new Vector2(15, 15);
+            textureRect.RectSize = new Vector2(30, 30);
             progressBar.AddChild(textureRect);
             parent.AddChild(progressBar);
             parent.MoveChild(progressBar, 0);
             textureRect.MarginLeft = getPreviousBar(parent, progressBar).RectSize.x
                 * (float)(getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue);
-            textureRect.MarginRight = 15 + getPreviousBar(parent, progressBar).RectSize.x
+            textureRect.MarginRight = 30 + getPreviousBar(parent, progressBar).RectSize.x
                 * (float)(getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue);
             progressBar.Value = process.Value + getPreviousBar(parent, progressBar).Value;
             textureRect.Visible = ((progressBar.RectSize.x * progressBar.Value / progressBar.MaxValue)
-                - (getPreviousBar(parent, progressBar).RectSize.x * getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue)) >= 15;
+                - (getPreviousBar(parent, progressBar).RectSize.x * getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue)) >= 30;
         }
     }
 
