@@ -449,6 +449,9 @@ public class MicrobeEditorGUI : Node
         atpConsumptionBar.MaxValue = maxValue;
         atpConsumptionBar.Value = energyBalance.TotalConsumption;
 
+        removeUnusedBars(atpConsumptionBar, energyBalance.Consumption);
+        removeUnusedBars(atpProductionBar, energyBalance.Production);
+
         foreach (var process in makeSortedConsumptionBar(energyBalance.Consumption))
         {
             createAndUpdateProcessBar(process, maxValue, atpConsumptionBar);
@@ -458,9 +461,6 @@ public class MicrobeEditorGUI : Node
         {
             createAndUpdateProcessBar(process, maxValue, atpProductionBar);
         }
-
-        removeUnusedBars(atpConsumptionBar, energyBalance.Consumption);
-        removeUnusedBars(atpProductionBar, energyBalance.Production);
     }
 
     /// <summary>
@@ -1487,7 +1487,7 @@ public class MicrobeEditorGUI : Node
                     match = true;
             }
             if (!match)
-                progressBar.QueueFree();
+                progressBar.GetParent().RemoveChild(progressBar);
         }
     }
 
