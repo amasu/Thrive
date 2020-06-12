@@ -1419,10 +1419,15 @@ public class MicrobeEditorGUI : Node
         if (parent.HasNode(process.Key))
         {
             ProgressBar progressBar = parent.GetNode<ProgressBar>(process.Key);
+            TextureRect textureRect = progressBar.GetChild<TextureRect>(0);
             progressBar.MaxValue = maxValue;
-            double barShift = parent.GetChildCount() > progressBar.GetIndex() + 1 ?
-                parent.GetChild<ProgressBar>(progressBar.GetIndex() + 1).Value : 0;
-            progressBar.Value = process.Value + barShift;
+            textureRect.MarginLeft = getPreviousBar(parent, progressBar).RectSize.x
+                * (float)(getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue);
+            textureRect.MarginRight = 15 + getPreviousBar(parent, progressBar).RectSize.x
+                * (float)(getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue);
+            progressBar.Value = process.Value + getPreviousBar(parent, progressBar).Value;
+            textureRect.Visible = ((progressBar.RectSize.x * progressBar.Value / progressBar.MaxValue)
+                - (getPreviousBar(parent, progressBar).RectSize.x * getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue)) >= 15;
         }
         else
         {
@@ -1430,7 +1435,6 @@ public class MicrobeEditorGUI : Node
             progressBar.Name = process.Key;
             progressBar.PercentVisible = false;
             progressBar.MarginRight = 318;
-            progressBar.MarginTop = 3;
             progressBar.MarginBottom = 15;
             StyleBoxFlat styleBoxFlat = new StyleBoxFlat();
             char type = 'x';
@@ -1447,12 +1451,27 @@ public class MicrobeEditorGUI : Node
             progressBar.Set("custom_styles/fg", styleBoxFlat);
             progressBar.Set("custom_styles/bg", styleBoxEmpty);
             progressBar.MaxValue = maxValue;
+            TextureRect textureRect = new TextureRect();
+            textureRect.Texture = BarHelper.GetBarIcon(process.Key);
+            textureRect.Expand = true;
+            textureRect.RectSize = new Vector2(15, 15);
+            progressBar.AddChild(textureRect);
             parent.AddChild(progressBar);
             parent.MoveChild(progressBar, 0);
-            double barShift = parent.GetChildCount() > progressBar.GetIndex() + 1 ?
-                parent.GetChild<ProgressBar>(progressBar.GetIndex() + 1).Value : 0;
-            progressBar.Value = process.Value + barShift;
+            textureRect.MarginLeft = getPreviousBar(parent, progressBar).RectSize.x
+                * (float)(getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue);
+            textureRect.MarginRight = 15 + getPreviousBar(parent, progressBar).RectSize.x
+                * (float)(getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue);
+            progressBar.Value = process.Value + getPreviousBar(parent, progressBar).Value;
+            textureRect.Visible = ((progressBar.RectSize.x * progressBar.Value / progressBar.MaxValue)
+                - (getPreviousBar(parent, progressBar).RectSize.x * getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue)) >= 15;
         }
+    }
+
+    private ProgressBar getPreviousBar(ProgressBar parent, ProgressBar currentBar)
+    {
+        return parent.GetChildCount() > currentBar.GetIndex() + 1 ?
+            parent.GetChild<ProgressBar>(currentBar.GetIndex() + 1) : new ProgressBar();
     }
 
     private void removeUnusedBars (ProgressBar parent, Dictionary<string, float> processes)

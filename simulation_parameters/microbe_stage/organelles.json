@@ -25,7 +25,7 @@
     "rusticyanin": {
         "productionColour": "#ad4a22",
         "consumptionColour": "#ad4a22",
-        "iconPath": "",
+        "iconPath": "res://assets/textures/gui/bevel/RusticyaninIcon.png",
         "mpCost": 45,
         "initialComposition": {
             "ammonia": 1,
@@ -57,7 +57,7 @@
     "nitrogenase": {
         "productionColour": "#ce681a",
         "consumptionColour": "#ce681a",
-        "iconPath": "",
+        "iconPath": "res://assets/textures/gui/bevel/NitrogenaseIcon.png",
         "mpCost": 55,
         "initialComposition": {
             "ammonia": 1,
@@ -90,7 +90,7 @@
     "protoplasm": {
         "productionColour": "#1db7e5",
         "consumptionColour": "#1db7e5",
-        "iconPath": "",
+        "iconPath": "res://assets/textures/gui/bevel/ProtoplasmIcon.png",
         "mpCost": 55,
         "initialComposition": {
             "ammonia": 1,
@@ -122,7 +122,7 @@
     "chemoSynthesizingProteins": {
         "productionColour": "#c5df5c",
         "consumptionColour": "#c5df5c",
-        "iconPath": "",
+        "iconPath": "res://assets/textures/gui/bevel/ChemoproteinsIcon.png",
         "mpCost": 45,
         "initialComposition": {
             "ammonia": 1,
@@ -155,7 +155,7 @@
     "oxytoxyProteins": {
         "productionColour": "#a43673",
         "consumptionColour": "#a43673",
-        "iconPath": "",
+        "iconPath": "res://assets/textures/gui/bevel/ToxinVacuoleIcon.png",
         "mpCost": 55,
         "initialComposition": {
             "ammonia": 1,
@@ -192,7 +192,7 @@
     "chromatophore": {
         "productionColour": "#37da9b",
         "consumptionColour": "#37da9b",
-        "iconPath": "",
+        "iconPath": "res://assets/textures/gui/bevel/ChromatophoreIcon.png",
         "mpCost": 50,
         "initialComposition": {
             "ammonia": 1,
@@ -225,7 +225,7 @@
     "metabolosome": {
         "productionColour": "#ff7f75",
         "consumptionColour": "#ff7f75",
-        "iconPath": "",
+        "iconPath": "res://assets/textures/gui/bevel/MetabolosomeIcon.png",
         "mpCost": 45,
         "initialComposition": {
             "ammonia": 1,
@@ -257,7 +257,7 @@
     "nitrogenfixingplastid": {
         "productionColour": "#ffb74f",
         "consumptionColour": "#ffb74f",
-        "iconPath": "",
+        "iconPath": "res://assets/textures/gui/bevel/NitroplastidIcon.png",
         "mpCost": 50,
         "initialComposition": {
             "ammonia": 2,
@@ -326,7 +326,7 @@
     "flagellum": {
         "productionColour": "#32a8b5",
         "consumptionColour": "#32a8b5",
-        "iconPath": "",
+        "iconPath": "res://assets/textures/gui/bevel/FlagellumIcon.png",
         "mpCost": 55,
         "initialComposition": {
             "ammonia": 2,
@@ -383,7 +383,7 @@
     "mitochondrion": {
         "productionColour": "#9b6ff1",
         "consumptionColour": "#9b6ff1",
-        "iconPath": "",
+        "iconPath": "res://assets/textures/gui/bevel/MitochondrionIcon.png",
         "mpCost": 45,
         "initialComposition": {
             "ammonia": 2,
@@ -419,7 +419,7 @@
     "oxytoxy": {
         "productionColour": "#bc3f7e",
         "consumptionColour": "#bc3f7e",
-        "iconPath": "",
+        "iconPath": "res://assets/textures/gui/bevel/ToxinVacuoleIcon.png",
         "mpCost": 70,
         "initialComposition": {
             "ammonia": 2,
@@ -489,7 +489,7 @@
     "cytoplasm": {
         "productionColour": "#9fc6e4",
         "consumptionColour": "#9fc6e4",
-        "iconPath": "",
+        "iconPath": "res://assets/textures/gui/bevel/CytoplasmIcon.png",
         "mpCost": 22,
         "initialComposition": {
             "ammonia": 2,
