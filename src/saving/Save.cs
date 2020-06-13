@@ -372,6 +372,11 @@ public class SaveInformation
     public DateTime CreatedAt { get; set; } = DateTime.Now;
 
     /// <summary>
+    ///   An extended description for this save
+    /// </summary>
+    public string Description { get; set; } = string.Empty;
+
+    /// <summary>
     ///   Unique ID of this save
     /// </summary>
     public Guid ID { get; set; } = Guid.NewGuid();
