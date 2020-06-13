@@ -122,8 +122,6 @@ public class SaveStatusOverlay : Control
 
     private void OnErrorDialogDismissed()
     {
-        errorDialog.Hide();
-
         SceneManager.Instance.GetTree().Paused = false;
 
         if (onDialogDismissReturnToMenu)

@@ -41,10 +41,10 @@ __meta__ = {
 
 [node name="ErrorPopup" type="AcceptDialog" parent="CenterContainer2"]
 visible = true
-margin_left = 314.0
-margin_top = 184.0
-margin_right = 964.0
-margin_bottom = 534.0
+margin_left = 315.0
+margin_top = 185.0
+margin_right = 965.0
+margin_bottom = 535.0
 rect_min_size = Vector2( 650, 350 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -104,6 +104,5 @@ margin_bottom = 24.0
 size_flags_horizontal = 5
 size_flags_vertical = 9
 text = "Copy Error To Clipboard"
-[connection signal="confirmed" from="CenterContainer2/ErrorPopup" to="." method="OnErrorDialogDismissed"]
 [connection signal="popup_hide" from="CenterContainer2/ErrorPopup" to="." method="OnErrorDialogDismissed"]
 [connection signal="pressed" from="CenterContainer2/ErrorPopup/VBoxContainer/VBoxContainer2/CopyErrorButton" to="." method="OnCopyToClipboardPressed"]
