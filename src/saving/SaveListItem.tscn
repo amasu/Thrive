@@ -22,11 +22,12 @@ __meta__ = {
 SaveNamePath = NodePath("VBoxContainer/HBoxContainer/SaveName")
 ScreenshotPath = NodePath("Screenshot")
 VersionPath = NodePath("VBoxContainer/HBoxContainer/Version")
-TypePath = NodePath("VBoxContainer/HBoxContainer/Type")
+TypePath = NodePath("VBoxContainer/HBoxContainer4/Type")
 CreatedAtPath = NodePath("VBoxContainer/HBoxContainer2/CreatedAt")
 CreatedByPath = NodePath("VBoxContainer/HBoxContainer2/Creator")
-CreatedOnPlatformPath = NodePath("VBoxContainer/HBoxContainer2/Platform")
+CreatedOnPlatformPath = NodePath("VBoxContainer/HBoxContainer4/Platform")
 DescriptionPath = NodePath("VBoxContainer/HBoxContainer3/Description")
+SelectedPath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/SelectBox")
 
 [node name="Screenshot" type="TextureRect" parent="."]
 margin_right = 255.0
@@ -75,37 +76,29 @@ margin_right = 270.0
 margin_bottom = 33.0
 text = "..."
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
-margin_left = 274.0
-margin_top = 10.0
-margin_right = 334.0
-margin_bottom = 33.0
-text = " Type:"
-
-[node name="Type" type="Label" parent="VBoxContainer/HBoxContainer"]
-margin_left = 338.0
-margin_top = 10.0
-margin_right = 353.0
-margin_bottom = 33.0
-text = "..."
-
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 357.0
+margin_left = 274.0
 margin_right = 1021.0
 margin_bottom = 43.0
 size_flags_horizontal = 3
 alignment = 2
 
+[node name="SelectBox" type="CheckBox" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+margin_left = 510.0
+margin_right = 628.0
+margin_bottom = 43.0
+text = "selected"
+
 [node name="Delete" type="TextureButton" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
-margin_left = 549.0
-margin_right = 591.0
+margin_left = 632.0
+margin_right = 674.0
 margin_bottom = 43.0
 texture_normal = ExtResource( 4 )
 texture_hover = ExtResource( 1 )
 
 [node name="Load" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
-margin_left = 595.0
-margin_right = 664.0
+margin_left = 678.0
+margin_right = 747.0
 margin_bottom = 43.0
 text = "Load"
 
@@ -137,22 +130,38 @@ margin_right = 273.0
 margin_bottom = 23.0
 text = "..."
 
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 277.0
-margin_right = 488.0
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 74.0
+margin_right = 1021.0
+margin_bottom = 97.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
+margin_right = 54.0
+margin_bottom = 23.0
+text = "Type:"
+
+[node name="Type" type="Label" parent="VBoxContainer/HBoxContainer4"]
+margin_left = 58.0
+margin_right = 73.0
+margin_bottom = 23.0
+text = "..."
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer4"]
+margin_left = 77.0
+margin_right = 288.0
 margin_bottom = 23.0
 text = " Created on Platform:"
 
-[node name="Platform" type="Label" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 492.0
-margin_right = 507.0
+[node name="Platform" type="Label" parent="VBoxContainer/HBoxContainer4"]
+margin_left = 292.0
+margin_right = 307.0
 margin_bottom = 23.0
 text = "..."
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 74.0
+margin_top = 101.0
 margin_right = 1021.0
-margin_bottom = 97.0
+margin_bottom = 124.0
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
 margin_right = 119.0

@@ -74,6 +74,7 @@ margin_top = 28.0
 margin_right = 1000.0
 margin_bottom = 273.0
 size_flags_vertical = 3
+SelectableItems = true
 
 [node name="BottomBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 277.0

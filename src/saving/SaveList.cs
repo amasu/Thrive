@@ -12,6 +12,9 @@ public class SaveList : ScrollContainer
     public bool AutoRefreshOnFirstVisible = true;
 
     [Export]
+    public bool SelectableItems;
+
+    [Export]
     public NodePath LoadingItemPath;
 
     [Export]
@@ -56,6 +59,7 @@ public class SaveList : ScrollContainer
         foreach (var save in saves)
         {
             var item = (SaveListItem)listItemScene.Instance();
+            item.Selectable = SelectableItems;
             item.SaveName = save;
             savesList.AddChild(item);
         }

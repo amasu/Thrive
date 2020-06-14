@@ -9,6 +9,9 @@ using Godot;
 public class SaveListItem : HBoxContainer
 {
     [Export]
+    public bool Selectable;
+
+    [Export]
     public NodePath SaveNamePath;
 
     [Export]
@@ -32,6 +35,9 @@ public class SaveListItem : HBoxContainer
     [Export]
     public NodePath DescriptionPath;
 
+    [Export]
+    public NodePath SelectedPath;
+
     private Label saveNameLabel;
     private TextureRect screenshot;
     private Label version;
@@ -40,6 +46,7 @@ public class SaveListItem : HBoxContainer
     private Label createdBy;
     private Label createdOnPlatform;
     private Label description;
+    private CheckBox selected;
 
     private string saveName;
 
@@ -63,6 +70,24 @@ public class SaveListItem : HBoxContainer
         }
     }
 
+    public bool Selected
+    {
+        get
+        {
+            if (!Selectable)
+                return false;
+
+            return selected.Pressed;
+        }
+        set
+        {
+            if (!Selectable)
+                throw new InvalidOperationException();
+
+            selected.Pressed = value;
+        }
+    }
+
     public override void _Ready()
     {
         saveNameLabel = GetNode<Label>(SaveNamePath);
@@ -73,6 +98,9 @@ public class SaveListItem : HBoxContainer
         createdBy = GetNode<Label>(CreatedByPath);
         createdOnPlatform = GetNode<Label>(CreatedOnPlatformPath);
         description = GetNode<Label>(DescriptionPath);
+        selected = GetNode<CheckBox>(SelectedPath);
+
+        selected.Visible = Selectable;
 
         UpdateName();
     }
@@ -110,7 +138,22 @@ public class SaveListItem : HBoxContainer
     {
         loadingData = true;
 
-        saveInfoLoadTask = new Task<Save>(() => Save.LoadInfoAndScreenshotFromSave(saveName));
+        saveInfoLoadTask = new Task<Save>(() =>
+        {
+            var save = Save.LoadInfoAndScreenshotFromSave(saveName);
+
+            // Rescale the screenshot to save memory etc.
+            float aspectRatio = save.Screenshot.GetWidth() / (float)save.Screenshot.GetHeight();
+
+            if (save.Screenshot.GetHeight() > Constants.SAVE_LIST_SCREENSHOT_HEIGHT)
+            {
+                save.Screenshot.Resize((int)(Constants.SAVE_LIST_SCREENSHOT_HEIGHT * aspectRatio),
+                    Constants.SAVE_LIST_SCREENSHOT_HEIGHT);
+            }
+
+            return save;
+        });
+
         TaskExecutor.Instance.AddTask(saveInfoLoadTask);
     }
 

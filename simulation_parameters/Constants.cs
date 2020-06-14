@@ -411,6 +411,8 @@ public static class Constants
 
     public const string SAVE_EXTENSION = "thrivesave";
 
+    public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
+
     public static string Version
     {
         get
