@@ -36,27 +36,33 @@ margin_bottom = 24.0
 alignment = 1
 
 [node name="LoadButton" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 263.0
-margin_right = 332.0
+margin_left = 212.0
+margin_right = 281.0
 margin_bottom = 24.0
 disabled = true
 text = "Load"
 
 [node name="VSeparator" type="VSeparator" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 336.0
-margin_right = 340.0
+margin_left = 285.0
+margin_right = 289.0
 margin_bottom = 24.0
 
+[node name="Refresh" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
+margin_left = 293.0
+margin_right = 391.0
+margin_bottom = 24.0
+text = "Refresh"
+
 [node name="DeleteSelected" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 344.0
-margin_right = 524.0
+margin_left = 395.0
+margin_right = 575.0
 margin_bottom = 24.0
 disabled = true
 text = "Delete Selected"
 
 [node name="DeleteOld" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 528.0
-margin_right = 736.0
+margin_left = 579.0
+margin_right = 787.0
 margin_bottom = 24.0
 disabled = true
 text = "Clean Up Old Saves"

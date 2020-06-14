@@ -82,6 +82,20 @@ public class Save
         return info;
     }
 
+    public static Save LoadInfoAndScreenshotFromSave(string saveName)
+    {
+        var target = SaveFileInfo.SaveNameToPath(saveName);
+
+        var (info, _, screenshot) = LoadFromFile(target, true, false, true, null);
+
+        var save = new Save();
+        save.Name = saveName;
+        save.Info = info;
+        save.Screenshot = screenshot;
+
+        return save;
+    }
+
     /// <summary>
     ///   Writes this save to disk.
     /// </summary>

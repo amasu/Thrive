@@ -193,6 +193,7 @@
     <Compile Include="src\saving\SaveFileInfo.cs" />
     <Compile Include="src\saving\MainGameState.cs" />
     <Compile Include="src\saving\SaveList.cs" />
+    <Compile Include="src\saving\SaveListItem.cs" />
     <Compile Include="src\saving\SaveLoadable.cs" />
     <Compile Include="src\saving\SaveContext.cs" />
     <Compile Include="src\saving\SaveHelper.cs" />
