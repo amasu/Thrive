@@ -59,6 +59,27 @@ public class SaveManager
     }
 
     /// <summary>
+    ///   Counts the total number of saves and how many bytes they take up
+    /// </summary>
+    public static (int count, long diskSpace) CountSaves()
+    {
+        int count = 0;
+        long totalSize = 0;
+
+        using (var file = new File())
+        {
+            foreach (var save in CreateListOfSaves())
+            {
+                file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read);
+                ++count;
+                totalSize += file.GetLen();
+            }
+        }
+
+        return (count, totalSize);
+    }
+
+    /// <summary>
     ///   Refreshes the list of saves this manager knows about
     /// </summary>
     public void RefreshSavesList()

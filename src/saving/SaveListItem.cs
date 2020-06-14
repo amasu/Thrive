@@ -53,6 +53,9 @@ public class SaveListItem : HBoxContainer
     private bool loadingData;
     private Task<Save> saveInfoLoadTask;
 
+    [Signal]
+    public delegate void OnSelectedChanged();
+
     public string SaveName
     {
         get
@@ -161,5 +164,16 @@ public class SaveListItem : HBoxContainer
     {
         if (saveNameLabel != null)
             saveNameLabel.Text = saveName;
+    }
+
+    private void OnSelectedCheckboxChanged(bool newValue)
+    {
+        _ = newValue;
+        EmitSignal(nameof(OnSelectedChanged));
+    }
+
+    private void LoadThisSave()
+    {
+        SaveHelper.LoadSave(SaveName);
     }
 }

@@ -154,6 +154,7 @@ margin_top = 50.0
 margin_right = 250.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
 mouse_filter = 1
 enabled_focus_mode = 0
 text = "Load Game"
@@ -302,9 +303,11 @@ __meta__ = {
 [node name="GUIAnimations" type="AnimationPlayer" parent="."]
 anims/MenuSlide = SubResource( 1 )
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/NewGame" to="." method="NewGamePressed"]
+[connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/LoadGame" to="." method="LoadGamePressed"]
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/Options" to="." method="OptionsPressed"]
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/Tools" to="." method="ToolsPressed"]
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/Quit" to="." method="QuitPressed"]
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/Tools/Freebuild Editor" to="." method="FreebuildEditorPressed"]
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/Tools/Back" to="." method="BackFromToolsPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
+[connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]

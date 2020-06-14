@@ -413,6 +413,9 @@ public static class Constants
 
     public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
 
+    public const int KIBIBYTE = 1024;
+    public const int MEBIBYTE = 1024 * KIBIBYTE;
+
     public static string Version
     {
         get

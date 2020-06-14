@@ -30,6 +30,9 @@ public class SaveList : ScrollContainer
 
     private Task<List<string>> readSavesList;
 
+    [Signal]
+    public delegate void OnSelectedChanged();
+
     public override void _Ready()
     {
         loadingItem = GetNode<Control>(LoadingItemPath);
@@ -60,12 +63,25 @@ public class SaveList : ScrollContainer
         {
             var item = (SaveListItem)listItemScene.Instance();
             item.Selectable = SelectableItems;
+
+            if (SelectableItems)
+                item.Connect(nameof(SaveListItem.OnSelectedChanged), this, nameof(OnSubItemSelectedChanged));
+
             item.SaveName = save;
             savesList.AddChild(item);
         }
 
         loadingItem.Visible = false;
         refreshing = false;
+    }
+
+    public IEnumerable<SaveListItem> GetSelectedItems()
+    {
+        foreach (SaveListItem child in savesList.GetChildren())
+        {
+            if (child.Selectable && child.Selected)
+                yield return child;
+        }
     }
 
     public void Refresh()
@@ -84,5 +100,10 @@ public class SaveList : ScrollContainer
         loadingItem.Visible = true;
         readSavesList = new Task<List<string>>(SaveManager.CreateListOfSaves);
         TaskExecutor.Instance.AddTask(readSavesList);
+    }
+
+    private void OnSubItemSelectedChanged()
+    {
+        EmitSignal(nameof(OnSelectedChanged));
     }
 }
