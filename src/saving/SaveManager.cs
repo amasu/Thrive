@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -7,6 +8,12 @@ using Godot;
 /// </summary>
 public class SaveManager
 {
+    public enum SaveOrder
+    {
+        LastModifiedFirst,
+        FileSystem,
+    }
+
     public static void RemoveExcessSaves()
     {
         RemoveExcessAutoSaves();
@@ -27,7 +34,7 @@ public class SaveManager
     ///   Returns a list of all saves
     /// </summary>
     /// <returns>The list of save names</returns>
-    public static List<string> CreateListOfSaves()
+    public static List<string> CreateListOfSaves(SaveOrder order = SaveOrder.LastModifiedFirst)
     {
         var result = new List<string>();
 
@@ -53,6 +60,23 @@ public class SaveManager
             }
 
             directory.ListDirEnd();
+        }
+
+        switch (order)
+        {
+            case SaveOrder.LastModifiedFirst:
+            {
+                using (var file = new File())
+                {
+                    result = result.OrderByDescending(item =>
+                        file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
+                }
+
+                break;
+            }
+
+            default:
+                break;
         }
 
         return result;
