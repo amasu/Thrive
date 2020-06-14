@@ -1499,7 +1499,7 @@ public class MicrobeEditorGUI : Node
             result.Add(pair);
         }
         result = result.OrderBy(
-            i => i.Key != "baseMovement" && i.Key != "flagella" && i.Key != "osmoregulation")
+            i => i.Key != "baseMovement" && i.Key != "osmoregulation")
             .ToList();
         return result;
     }

@@ -29,8 +29,6 @@ public static class BarHelper
         {
             case "baseMovement":
                 return new Color("#ff5524");
-            case "flagella":
-                return new Color("#ff9721");
             case "osmoregulation":
                 return new Color("#ffd63e");
             default:
