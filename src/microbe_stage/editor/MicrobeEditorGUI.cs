@@ -1423,11 +1423,9 @@ public class MicrobeEditorGUI : Node
             progressBar.MaxValue = maxValue;
             textureRect.MarginLeft = getPreviousBar(parent, progressBar).RectSize.x
                 * (float)(getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue);
-            textureRect.MarginRight = 30 + getPreviousBar(parent, progressBar).RectSize.x
-                * (float)(getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue);
+            textureRect.MarginRight = 30 + textureRect.MarginLeft;
             progressBar.Value = process.Value + getPreviousBar(parent, progressBar).Value;
-            textureRect.Visible = ((progressBar.RectSize.x * progressBar.Value / progressBar.MaxValue)
-                - (getPreviousBar(parent, progressBar).RectSize.x * getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue)) >= 30;
+            textureRect.Visible = (progressBar.RectSize.x * progressBar.Value / progressBar.MaxValue) - textureRect.MarginLeft >= 30;
         }
         else
         {
@@ -1462,12 +1460,32 @@ public class MicrobeEditorGUI : Node
             parent.MoveChild(progressBar, 0);
             textureRect.MarginLeft = getPreviousBar(parent, progressBar).RectSize.x
                 * (float)(getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue);
-            textureRect.MarginRight = 30 + getPreviousBar(parent, progressBar).RectSize.x
-                * (float)(getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue);
+            textureRect.MarginRight = 30 + textureRect.MarginLeft;
             progressBar.Value = process.Value + getPreviousBar(parent, progressBar).Value;
-            textureRect.Visible = ((progressBar.RectSize.x * progressBar.Value / progressBar.MaxValue)
-                - (getPreviousBar(parent, progressBar).RectSize.x * getPreviousBar(parent, progressBar).Value / getPreviousBar(parent, progressBar).MaxValue)) >= 30;
+            textureRect.Visible = (progressBar.RectSize.x * progressBar.Value / progressBar.MaxValue) - textureRect.MarginLeft >= 30;
+            progressBar.Connect("gui_input", this, nameof(atpBarToggled), new Godot.Collections.Array(){progressBar});
         }
+    }
+
+    private void atpBarToggled(InputEvent @event, ProgressBar progressBar)
+    {
+        if (@event is InputEventMouseButton eventMouse && @event.IsPressed() && isInsideBar(progressBar, eventMouse))
+            handleATPBarDisabling(progressBar, eventMouse);
+    }
+
+    private void handleATPBarDisabling(ProgressBar bar, InputEventMouseButton eventMouse)
+    {
+        GD.Print(bar.Name);
+    }
+
+    private bool isInsideBar(ProgressBar bar, InputEventMouseButton eventMouse)
+    {
+        float barLeft = bar.GetChild<TextureRect>(0).MarginLeft;
+        float barRight = (float)(bar.RectSize.x * bar.Value / bar.MaxValue);
+        float barTop = 0;
+        float barBottom = 30;
+        return eventMouse.Position.x >= barLeft && eventMouse.Position.x <= barRight
+            && eventMouse.Position.y >= barTop && eventMouse.Position.y <= barBottom;
     }
 
     private ProgressBar getPreviousBar(ProgressBar parent, ProgressBar currentBar)
