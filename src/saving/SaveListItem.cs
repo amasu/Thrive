@@ -163,7 +163,7 @@ public class SaveListItem : HBoxContainer
     private void UpdateName()
     {
         if (saveNameLabel != null)
-            saveNameLabel.Text = saveName;
+            saveNameLabel.Text = saveName.Replace("." + Constants.SAVE_EXTENSION, string.Empty);
     }
 
     private void OnSelectedCheckboxChanged(bool newValue)

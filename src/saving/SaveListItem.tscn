@@ -123,13 +123,13 @@ text = "..."
 
 [node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer2"]
 margin_left = 132.0
-margin_right = 254.0
+margin_right = 169.0
 margin_bottom = 23.0
-text = " Created by:"
+text = " By:"
 
 [node name="Creator" type="Label" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 258.0
-margin_right = 273.0
+margin_left = 173.0
+margin_right = 188.0
 margin_bottom = 23.0
 text = "..."
 
