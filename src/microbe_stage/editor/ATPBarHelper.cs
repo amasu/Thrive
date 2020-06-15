@@ -3,19 +3,19 @@ using Godot;
 /// <summary>
 ///   Used to access the color and icon of a bar from the EnergyBalaceInfo dictionary
 /// </summary>
-public static class BarHelper
+public static class ATPBarHelper
 {
-    public static Color GetBarColour(string name, char type)
+    public static Color GetBarColour(string name, string type)
     {
         foreach(var organelle in SimulationParameters.Instance.GetAllOrganelles())
         {
             if (organelle.Name == name)
             {
-                if (type == 'p')
+                if (type == "AtpProductionBar")
                 {
                     return new Color(organelle.ProductionColour);
                 }
-                else if (type == 'c')
+                else if (type == "AtpConsumptionBar")
                 {
                     return new Color(organelle.ConsumptionColour);
                 }

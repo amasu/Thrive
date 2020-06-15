@@ -133,7 +133,7 @@ font_data = ExtResource( 5 )
 
 [sub_resource type="StyleBoxEmpty" id=11]
 
-[sub_resource type="StyleBoxEmpty" id=12]
+[sub_resource type="StyleBoxEmpty" id=75]
 
 [sub_resource type="StyleBoxEmpty" id=13]
 
@@ -141,7 +141,7 @@ font_data = ExtResource( 5 )
 size = 15
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxEmpty" id=15]
+[sub_resource type="StyleBoxEmpty" id=76]
 
 [sub_resource type="StyleBoxEmpty" id=16]
 
@@ -1338,9 +1338,9 @@ custom_styles/separator = SubResource( 11 )
 margin_top = 22.0
 margin_right = 318.0
 margin_bottom = 52.0
-rect_min_size = Vector2( 0, 15 )
+rect_min_size = Vector2( 0, 30 )
 mouse_filter = 1
-custom_styles/fg = SubResource( 12 )
+custom_styles/fg = SubResource( 75 )
 custom_styles/bg = SubResource( 13 )
 custom_fonts/font = SubResource( 14 )
 percent_visible = false
@@ -1349,9 +1349,9 @@ percent_visible = false
 margin_top = 52.0
 margin_right = 318.0
 margin_bottom = 82.0
-rect_min_size = Vector2( 0, 15 )
+rect_min_size = Vector2( 0, 30 )
 mouse_filter = 1
-custom_styles/fg = SubResource( 15 )
+custom_styles/fg = SubResource( 76 )
 custom_styles/bg = SubResource( 16 )
 custom_fonts/font = SubResource( 14 )
 percent_visible = false
