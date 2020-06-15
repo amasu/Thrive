@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
+using Godot.Collections;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   A widget containing a list of saves
@@ -20,8 +22,12 @@ public class SaveList : ScrollContainer
     [Export]
     public NodePath SavesListPath;
 
+    [Export]
+    public NodePath DeleteConfirmDialogPath;
+
     private Control loadingItem;
     private BoxContainer savesList;
+    private ConfirmationDialog deleteConfirmDialog;
 
     private PackedScene listItemScene;
 
@@ -30,6 +36,8 @@ public class SaveList : ScrollContainer
 
     private Task<List<string>> readSavesList;
 
+    private string saveToBeDeleted;
+
     [Signal]
     public delegate void OnSelectedChanged();
 
@@ -37,6 +45,7 @@ public class SaveList : ScrollContainer
     {
         loadingItem = GetNode<Control>(LoadingItemPath);
         savesList = GetNode<BoxContainer>(SavesListPath);
+        deleteConfirmDialog = GetNode<ConfirmationDialog>(DeleteConfirmDialogPath);
 
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }
@@ -66,6 +75,8 @@ public class SaveList : ScrollContainer
 
             if (SelectableItems)
                 item.Connect(nameof(SaveListItem.OnSelectedChanged), this, nameof(OnSubItemSelectedChanged));
+
+            item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array() { save });
 
             item.SaveName = save;
             savesList.AddChild(item);
@@ -105,5 +116,22 @@ public class SaveList : ScrollContainer
     private void OnSubItemSelectedChanged()
     {
         EmitSignal(nameof(OnSelectedChanged));
+    }
+
+    private void OnDeletePressed(string saveName)
+    {
+        saveToBeDeleted = saveName;
+        deleteConfirmDialog.DialogText =
+            $"Deleting this save cannot be undone, are you sure you want to permanently delete {saveName}?";
+        deleteConfirmDialog.PopupCenteredMinsize();
+    }
+
+    private void OnConfirmDelete()
+    {
+        GD.Print("Deleting save: ", saveToBeDeleted);
+        SaveHelper.DeleteSave(saveToBeDeleted);
+        saveToBeDeleted = null;
+
+        Refresh();
     }
 }

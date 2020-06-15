@@ -29,6 +29,7 @@ CreatedByPath = NodePath("VBoxContainer/HBoxContainer2/Creator")
 CreatedOnPlatformPath = NodePath("VBoxContainer/HBoxContainer4/Platform")
 DescriptionPath = NodePath("VBoxContainer/HBoxContainer3/Description")
 SelectedPath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/SelectBox")
+LoadButtonPath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/Load")
 
 [node name="Screenshot" type="TextureRect" parent="."]
 margin_right = 255.0
@@ -94,7 +95,6 @@ text = "select"
 margin_left = 632.0
 margin_right = 674.0
 margin_bottom = 43.0
-disabled = true
 texture_normal = ExtResource( 4 )
 texture_hover = ExtResource( 1 )
 texture_disabled = ExtResource( 6 )
@@ -176,5 +176,16 @@ margin_left = 123.0
 margin_right = 138.0
 margin_bottom = 23.0
 text = "..."
+
+[node name="DeleteConfirmDialog" type="ConfirmationDialog" parent="."]
+margin_left = 1079.0
+margin_right = 1279.0
+margin_bottom = 720.0
+size_flags_horizontal = 5
+size_flags_vertical = 5
+popup_exclusive = true
+window_title = "Delete this Save?"
+dialog_text = "Deleting this save cannot be undone, are you sure you want to permanently delete this?"
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/HBoxContainer/SelectBox" to="." method="OnSelectedCheckboxChanged"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainer/Delete" to="." method="DeletePressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainer/Load" to="." method="LoadThisSave"]

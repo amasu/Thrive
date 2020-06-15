@@ -12,6 +12,9 @@ public class SaveListItem : HBoxContainer
     public bool Selectable;
 
     [Export]
+    public bool Loadable = true;
+
+    [Export]
     public NodePath SaveNamePath;
 
     [Export]
@@ -38,6 +41,9 @@ public class SaveListItem : HBoxContainer
     [Export]
     public NodePath SelectedPath;
 
+    [Export]
+    public NodePath LoadButtonPath;
+
     private Label saveNameLabel;
     private TextureRect screenshot;
     private Label version;
@@ -47,6 +53,7 @@ public class SaveListItem : HBoxContainer
     private Label createdOnPlatform;
     private Label description;
     private CheckBox selected;
+    private Button loadButton;
 
     private string saveName;
 
@@ -55,6 +62,9 @@ public class SaveListItem : HBoxContainer
 
     [Signal]
     public delegate void OnSelectedChanged();
+
+    [Signal]
+    public delegate void OnDeleted();
 
     public string SaveName
     {
@@ -102,8 +112,11 @@ public class SaveListItem : HBoxContainer
         createdOnPlatform = GetNode<Label>(CreatedOnPlatformPath);
         description = GetNode<Label>(DescriptionPath);
         selected = GetNode<CheckBox>(SelectedPath);
+        loadButton = GetNode<Button>(LoadButtonPath);
 
         selected.Visible = Selectable;
+
+        loadButton.Visible = Loadable;
 
         UpdateName();
     }
@@ -175,5 +188,10 @@ public class SaveListItem : HBoxContainer
     private void LoadThisSave()
     {
         SaveHelper.LoadSave(SaveName);
+    }
+
+    private void DeletePressed()
+    {
+        EmitSignal(nameof(OnDeleted));
     }
 }

@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/saving/SaveList.cs" type="Script" id=1]
+[ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=2]
 
 [node name="SaveList" type="ScrollContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
+theme = ExtResource( 2 )
 follow_focus = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -13,6 +15,7 @@ __meta__ = {
 }
 LoadingItemPath = NodePath("VBoxContainer/LoadingLabel")
 SavesListPath = NodePath("VBoxContainer/ItemList")
+DeleteConfirmDialogPath = NodePath("VBoxContainer/DeleteConfirmDialog")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 1280.0
@@ -29,3 +32,11 @@ align = 1
 
 [node name="ItemList" type="VBoxContainer" parent="VBoxContainer"]
 margin_right = 1280.0
+
+[node name="DeleteConfirmDialog" type="ConfirmationDialog" parent="VBoxContainer"]
+size_flags_horizontal = 5
+size_flags_vertical = 5
+popup_exclusive = true
+window_title = "Delete this Save?"
+dialog_text = "Text not set..."
+[connection signal="confirmed" from="VBoxContainer/DeleteConfirmDialog" to="." method="OnConfirmDelete"]
